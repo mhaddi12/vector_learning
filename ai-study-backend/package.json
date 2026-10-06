@@ -1,0 +1,25 @@
+{
+  "name": "ai-study-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-powered study and flashcard generation service.",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
+    "postinstall": "prisma generate"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "@prisma/client": "^6.19.3",
+    "nuxt": "^4.5.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.3"
+  }
+}

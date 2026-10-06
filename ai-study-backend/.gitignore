@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# Nuxt
+.nuxt/
+.output/
+dist/
+.data/
+.nitro/
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# local data
+data/
+uploads/
+
+# misc
+*.local
+coverage/
+.cache/

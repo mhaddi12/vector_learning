@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Document {
+  id         Int         @id @default(autoincrement())
+  userId     String      @map("user_id")
+  title      String
+  content    String
+  summary    String?
+  keywords   Json        @default("[]")
+  // Stored as pgvector. Prisma cannot type this natively.
+  embedding  Unsupported("vector(384)")?
+  createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  flashcards Flashcard[]
+
+  @@map("documents")
+}
+
+model Flashcard {
+  id         Int      @id @default(autoincrement())
+  documentId Int      @map("document_id")
+  userId     String   @map("user_id")
+  front      String
+  back       String
+  difficulty String
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId], map: "flashcards_document_id_idx")
+  @@map("flashcards")
+}
